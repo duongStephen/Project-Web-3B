@@ -82,11 +82,8 @@
                                 </ul>
                             </div> <!-- navbar collapse -->
                             <div class="login-button">
-                                <ul>
-                                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-
-                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                                </ul>
+                                
+                                @Html.Partial("_LoginPartial")
                             </div>
                             <div class="button header-button">
                                 <a href="javascript:void(0)" class="btn">Post an Ad</a>
