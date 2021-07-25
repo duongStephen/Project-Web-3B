@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ThueTro.Models.NhaTro>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/HomePage.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tenduong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DienTich)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenChuNha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CTNha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiThieu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ratting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDQuann)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tenduong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DienTich)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenChuNha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CTNha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioiThieu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ratting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDQuann)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDNha }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDNha }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDNha })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,143 @@
+﻿@model ThueTro.Models.NhaTro
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/HomePage.cshtml";
+}
+
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<title>Five Brothers Hood</title>
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.svg" />
+<!-- Place favicon.ico in the root directory -->
+<!-- Web Font -->
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+<!-- ========================= CSS here ========================= -->
+<link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/assets/css/LineIcons.2.0.css" />
+<link rel="stylesheet" href="~/assets/css/animate.css" />
+<link rel="stylesheet" href="~/assets/css/tiny-slider.css" />
+<link rel="stylesheet" href="~/assets/css/glightbox.min.css" />
+<link rel="stylesheet" href="~/assets/css/main2.css" />
+<div>
+    <h4>NhaTro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <div class="slider">
+            <div class="slides">
+                <input type="radio" name="radio-btn" id="hinh1" />
+                <input type="radio" name="radio-btn" id="hinh2" />
+                @*<input type="radio" name="radio-btn" id="hinh3" />*@
+            </div>
+            <div class="Hinh dau">
+                <img src="~/Imagess/q1/q1hinh1.jpg" alt="" />
+            </div>
+            <div class="Hinh ">
+                <img src="~/Imagess/q1/q1hinh2.jpg" alt="" />
+            </div>
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                @*<div class="auto-btn3"></div>*@
+            </div>
+        </div>
+        <div class="navigation-manual">
+            <label for="hinh1" class="manual-btn"></label>
+            <label for="hinh2" class="manual-btn"></label>
+        </div>
+        <h1>
+            @Html.DisplayFor(model => model.Tenduong)
+        </h1>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DienTich)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DienTich)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenChuNha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenChuNha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CTNha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CTNha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GioiThieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GioiThieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ratting)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ratting)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDQuann)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDQuann)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IDNha }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
