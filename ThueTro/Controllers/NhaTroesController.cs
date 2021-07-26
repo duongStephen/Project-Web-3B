@@ -18,6 +18,7 @@ namespace ThueTro.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: NhaTroes
+        [Authorize(Roles ="Admin")]
         public ActionResult Index(int? page)
         {
             var total = db.NhaTros
@@ -56,6 +57,7 @@ namespace ThueTro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public ActionResult Create([Bind(Include = "IDNha,Tenduong,DienTich,TenChuNha,SDT,CTNha,GioiThieu,Gia,image,image2,image3,ratting,DiaDiemIdQuan,DateTime")] NhaTro nhaTro, HttpPostedFileBase[] anh)
         {
             //foreach (var file in anh)
