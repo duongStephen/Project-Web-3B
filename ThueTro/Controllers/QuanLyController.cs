@@ -12,7 +12,8 @@ using PagedList.Mvc;
 using System.IO;
 
 namespace ThueTro.Controllers
-{   [Authorize(Roles ="Admin")]
+{
+    [Authorize(Roles = "Admin")]
     public class QuanLyController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

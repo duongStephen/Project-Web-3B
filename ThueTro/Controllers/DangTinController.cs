@@ -7,7 +7,8 @@ using System.Web.Mvc;
 using ThueTro.Models;
 
 namespace ThueTro.Controllers
-{   [Authorize]
+{
+    [Authorize]
     public class DangTinController : Controller
     {
         public readonly ApplicationDbContext db = new ApplicationDbContext();
@@ -46,13 +47,13 @@ namespace ThueTro.Controllers
                 {
 
                     var fileName = Path.GetFileName(anh.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Imagess/Luanne/q1/"), fileName);
+                    var path = Path.Combine(Server.MapPath("~/Imagess/TuanDan/QPhuNhuan/"), fileName);
 
-                    var fileName2 = Path.GetFileName(anh.FileName);
-                    var path2 = Path.Combine(Server.MapPath("~/Imagess/Luanne/q1/"), fileName);
+                    var fileName2 = Path.GetFileName(anh2.FileName);
+                    var path2 = Path.Combine(Server.MapPath("~/Imagess/TuanDan/QPhuNhuan/"), fileName2);
 
-                    var fileName3 = Path.GetFileName(anh.FileName);
-                    var path3 = Path.Combine(Server.MapPath("~/Imagess/Luanne/q1/"), fileName);
+                    var fileName3 = Path.GetFileName(anh3.FileName);
+                    var path3 = Path.Combine(Server.MapPath("~/Imagess/TuanDan/QPhuNhuan/"), fileName3);
                     if (System.IO.File.Exists(path) || System.IO.File.Exists(path2) || System.IO.File.Exists(path3))
                     {
                         ViewBag.Thongbao = "Hình ảnh đã tồn tại";
@@ -68,6 +69,7 @@ namespace ThueTro.Controllers
                     nhatro.image3 = fileName3;
                     db.NhaTros.Add(nhatro);
                     db.SaveChanges();
+                    return RedirectToAction("Index", "Home");
                 }
                 return View(nhatro);
             }
