@@ -21,7 +21,7 @@ namespace ThueTro.Controllers
             {
                 DiaDiems = dbcontext.DiaDiems.ToList(),
 
-                ListHomePage = dbcontext.NhaTros
+                ListHomePage = dbcontext.NhaTros.OrderByDescending(m=>m.DateTime)
                 .Take(6).ToList()
 
                 
