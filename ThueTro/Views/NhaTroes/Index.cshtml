@@ -24,31 +24,98 @@
 <link rel="stylesheet" href="~/assets/css/glightbox.min.css" />
 <link rel="stylesheet" href="~/assets/css/main2.css" />
 <link rel="stylesheet" href="~/css/menustyle.css" />
+<div class="hero-area overlay">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
+                <div class="hero-text text-center">
+                    <div class="search-form wow fadeInUp" data-wow-delay=".7s">
+                        <div class="row">
+                            @using (Html.BeginForm("Index", "NhaTroes", FormMethod.Get))
+                            {
+                                <div class="col-lg-4 col-md-4 col-12 p-0">
+                                    <div class="search-input">
+                                        <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
+                                        @Html.TextBox("searchh")
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-12 p-0">
+                                    <div class="search-input">
+                                        <label for="category"><i class="lni lni-grid-alt theme-color"></i></label>
+                                        <select name="category" id="category">
+                                            <option value="none" selected disabled>Categories</option>
+                                            <option value="none">Vehicle</option>
+                                            <option value="none">Electronics</option>
+                                            <option value="none">Mobiles</option>
+                                            <option value="none">Furniture</option>
+                                            <option value="none">Fashion</option>
+                                            <option value="none">Jobs</option>
+                                            <option value="none">Real Estate</option>
+                                            <option value="none">Animals</option>
+                                            <option value="none">Education</option>
+                                            <option value="none">Matrimony</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-12 p-0">
+                                    <div class="search-input">
+                                        <label for="location"><i class="lni lni-map-marker theme-color"></i></label>
+                                        <div class="form-group">
+                                            @*@Html.LabelFor(m => m.DiaDiem)
+                        @Html.DropDownListFor(m => m.DiaDiem, new SelectList(Model.DiaDiems, "IDQuan", "TenQuan"), "", new { @class = "form-control" })*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-12 p-0">
+                                    <div class="search-btn button">
 
-<ul class="props">
-    @foreach (var item in Model) {
-    <li>
-        <div class="prop-img">
-            <img src="@item.image" alt="#">
-           
+
+                                        <button class="btn"><i class="lni lni-search-alt"></i> Search</button>
+                                    </div>
+                                </div>}
+                            </div>
+</div>
+                </div>
+            </div>
         </div>
-        <div class="prop-info">
-            <a class="link-overlay" href="@Url.Action("Details", "Nhatroes", new { id=item.IDNha })"><h2 class="prop-title">@item.CTNha</h2></a>
-            <div class="prop-addr ng-binding" ng-bind="GetAddress(30, 364)">@item.diaDiem</div>
-            <ul class="prop-attr">
-                <li>@item.DienTich<sup>2</sup></li>
-                
-            </ul>
-            <div class="price">@item.Gia</div>
+    </div>
+</div>
+
+<div class="ng-scope">
+    <div class="mg-property-listing ng-scope">
+        <div class="clearfix">
+            <div class="property-list-result">
+                <ul class="props">
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <div class="prop-img">
+                                <img src="@item.image" alt="#">
+
+                            </div>
+                            <div class="prop-info">
+                                <a class="link-overlay" href="@Url.Action("Details", "Nhatroes", new { id = item.IDNha })"><h2 class="prop-title">@item.CTNha</h2></a>
+                                <div class="prop-addr ng-binding" ng-bind="GetAddress(30, 364)">@item.diaDiem</div>
+                                <ul class="prop-attr">
+                                    <li>@item.DienTich<sup>2</sup></li>
+
+                                </ul>
+                                <div class="price">@item.Gia</div>
+                            </div>
+                            <div class="prop-extra">
+                                <div class="prop-created">@item.DateTime</div>
+                                <div class="prop-favorite" id="21380246" gtm-event="all" gtm-cat="listing" gtm-act="add-favorite" ng-click="Favorite.addRemove(21380246)" ng-class="{favorited: Favorite.items[21380246]}"><i class="fa fa-heart"></i></div>
+                            </div>
+                            <div class="up-item"><i class="fa fa-star up-item-star"></i></div>
+                        </li>
+                        }
+                </ul>
+
+            </div>
         </div>
-        <div class="prop-extra">
-            <div class="prop-created">@item.DateTime</div>
-            <div class="prop-favorite" id="21380246" gtm-event="all" gtm-cat="listing" gtm-act="add-favorite" ng-click="Favorite.addRemove(21380246)" ng-class="{favorited: Favorite.items[21380246]}"><i class="fa fa-heart"></i></div>
-        </div>
-        <div class="up-item"><i class="fa fa-star up-item-star"></i></div>
-    </li>
-    }
-</ul>
+
+    </div>
+</div>
 
 
 @*<p>

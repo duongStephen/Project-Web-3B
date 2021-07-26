@@ -15,10 +15,10 @@ namespace ThueTro.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: NhaTroes
-        public ActionResult Index()
-        {
-            return View(db.NhaTros.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    return View(db.NhaTros.ToList());
+        //}
 
         // GET: NhaTroes/Details/5
         public ActionResult Details(int? id)
@@ -122,6 +122,33 @@ namespace ThueTro.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //public ViewResult Index(string searchString)
+        //{
+        //    var searchh = from s in db.NhaTros select s;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        searchh = searchh.Where(s =>
+        //       s.CTNha.ToUpper().Contains(searchString.ToUpper())
+        //        ||
+        //       s.GioiThieu.ToUpper().Contains(searchString.ToUpper()));
+        //    }
+
+        //}return View(.ToList());
+        
+        public ActionResult Index(string searchh)
+        {
+            var links = from l in db.NhaTros // lấy toàn bộ liên kết
+                        select l;
+
+            if (!String.IsNullOrEmpty(searchh)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
+            {
+                links = links.Where(s => s.CTNha.Contains(searchh)); //lọc theo chuỗi tìm kiếm
+            }
+            return View(links.ToList());
+
         }
     }
 }
