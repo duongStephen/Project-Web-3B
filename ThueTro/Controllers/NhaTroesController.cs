@@ -19,6 +19,7 @@ namespace ThueTro.Controllers
 
         // GET: NhaTroes
         [Authorize(Roles ="Admin")]
+
         public ActionResult Index(int? page)
         {
             var total = db.NhaTros
