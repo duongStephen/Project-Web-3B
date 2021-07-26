@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,6 +8,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ThueTro.Models;
+using PagedList.Mvc;
+using System.IO;
 
 namespace ThueTro.Controllers
 {
@@ -15,9 +18,15 @@ namespace ThueTro.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: NhaTroes
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.NhaTros.ToList());
+            var total = db.NhaTros
+               .Select(a => a.IDNha)
+               .ToList().Count;
+            ViewBag.total = total;
+            int pageNumber = (page ?? 1);
+            int pageSize = 10;
+            return View(db.NhaTros.ToList().OrderBy(n => n.IDNha).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: NhaTroes/Details/5
@@ -38,6 +47,7 @@ namespace ThueTro.Controllers
         // GET: NhaTroes/Create
         public ActionResult Create()
         {
+            ViewBag.DiaDiemIdQuan = new SelectList(db.DiaDiems, "IDQuan", "TenQuan");
             return View();
         }
 
@@ -46,15 +56,37 @@ namespace ThueTro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IDNha,Tenduong,DienTich,TenChuNha,SDT,CTNha,GioiThieu,Gia,image,ratting,IDQuann,DateTime")] NhaTro nhaTro)
+        public ActionResult Create([Bind(Include = "IDNha,Tenduong,DienTich,TenChuNha,SDT,CTNha,GioiThieu,Gia,image,image2,image3,ratting,DiaDiemIdQuan,DateTime")] NhaTro nhaTro, HttpPostedFileBase[] anh)
         {
+            //foreach (var file in anh)
+            //{
+            //    if (file == null)
+            //    {
+            //        ViewBag.Thongbao = "Bạn chưa chọn ảnh";
+            //        return View();
+            //    }
+            //    else
+            //    {
             if (ModelState.IsValid)
             {
-                db.NhaTros.Add(nhaTro);
-                db.SaveChanges();
+                //            var fileName = Path.GetFileName(anh.FileName);
+                //            var path = Path.Combine(Server.MapPath("~/Content/HinhAnh/"), fileName);
+                //            if (System.IO.File.Exists(path))
+                //            {
+                //                ViewBag.Thongbao = "Hình ảnh đã tồn tại";
+                //            }
+                //            else
+                //            {
+                //                anh.SaveAs(path);
+                //            }
+                //            nhaTro.image = fileName;
+                    db.NhaTros.Add(nhaTro);
+                    db.SaveChanges();
+                //    }
+                //}
                 return RedirectToAction("Index");
             }
-
+            ViewBag.DiaDiemIdQuan = new SelectList(db.DiaDiems, "IDQuan", "TenQuan", nhaTro.DiaDiemIdQuan);
             return View(nhaTro);
         }
 
@@ -70,6 +102,7 @@ namespace ThueTro.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DiaDiemIdQuan = new SelectList(db.DiaDiems, "IDQuan", "TenQuan", nhaTro.DiaDiemIdQuan);
             return View(nhaTro);
         }
 
@@ -78,7 +111,7 @@ namespace ThueTro.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IDNha,Tenduong,DienTich,TenChuNha,SDT,CTNha,GioiThieu,Gia,image,ratting,IDQuann,DateTime")] NhaTro nhaTro)
+        public ActionResult Edit([Bind(Include = "IDNha,Tenduong,DienTich,TenChuNha,SDT,CTNha,GioiThieu,Gia,image,image2,image3,ratting,DiaDiemIdQuan,DateTime")] NhaTro nhaTro)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +119,7 @@ namespace ThueTro.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DiaDiemIdQuan = new SelectList(db.DiaDiems, "IDQuan", "TenQuan", nhaTro.DiaDiemIdQuan);
             return View(nhaTro);
         }
 

@@ -2,58 +2,29 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/HomePage.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<meta charset="utf-8" />
-<meta http-equiv="x-ua-compatible" content="ie=edge" />
-<title>Five Brothers Hood</title>
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="shortcut icon" type="image/x-icon" href="~/assets/images/favicon.svg" />
-<!-- Place favicon.ico in the root directory -->
-<!-- Web Font -->
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
-<!-- ========================= CSS here ========================= -->
-<link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="~/assets/css/LineIcons.2.0.css" />
-<link rel="stylesheet" href="~/assets/css/animate.css" />
-<link rel="stylesheet" href="~/assets/css/tiny-slider.css" />
-<link rel="stylesheet" href="~/assets/css/glightbox.min.css" />
-<link rel="stylesheet" href="~/assets/css/main2.css" />
+<h2>Thông tin chi tiết nhà trọ</h2>
 <div>
     <h4>NhaTro</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DiaDiem.TenQuan)
+        </dt>
 
-        <div class="slider">
-            <div class="slides">
-                <input type="radio" name="radio-btn" id="hinh1" />
-                <input type="radio" name="radio-btn" id="hinh2" />
-                @*<input type="radio" name="radio-btn" id="hinh3" />*@
-            </div>
-            <div class="Hinh dau">
-                <img src="~/Imagess/q1/q1hinh1.jpg" alt="" />
-            </div>
-            <div class="Hinh ">
-                <img src="~/Imagess/q1/q1hinh2.jpg" alt="" />
-            </div>
-            <div class="navigation-auto">
-                <div class="auto-btn1"></div>
-                <div class="auto-btn2"></div>
-                @*<div class="auto-btn3"></div>*@
-            </div>
-        </div>
-        <div class="navigation-manual">
-            <label for="hinh1" class="manual-btn"></label>
-            <label for="hinh2" class="manual-btn"></label>
-        </div>
-        <h1>
+        <dd>
+            @Html.DisplayFor(model => model.DiaDiem.TenQuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tenduong)
+        </dt>
+
+        <dd>
             @Html.DisplayFor(model => model.Tenduong)
-        </h1>
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.DienTich)
@@ -108,7 +79,23 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.image)
+            <img src="@Url.Content("~/Imagess/Duong/" +  Model.image)" style="height:150px; width:150px; margin:10px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image2)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Imagess/Duong/" +  Model.image2)" style="height:150px; width:150px; margin:10px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image3)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Imagess/Duong/" +  Model.image3)" style="height:150px; width:150px; margin:10px;" />
         </dd>
 
         <dt>
@@ -118,15 +105,13 @@
         <dd>
             @Html.DisplayFor(model => model.ratting)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.IDQuann)
+            @Html.DisplayNameFor(model => model.DiaDiemIdQuan)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IDQuann)
+            @Html.DisplayFor(model => model.DiaDiemIdQuan)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.DateTime)
         </dt>
@@ -138,6 +123,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IDNha }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button style="width: 130px" type="button" class="btn btn-warning" onclick="location.href = '@Url.Action("Edit", "NhaTroes", new { id = Model.IDNha })';return false;"><span style="margin-right: 5px" class="glyphicon glyphicon-pencil"></span>Sửa thông tin</button> |
+    @Html.ActionLink("Về trang quản lý", "Index")
 </p>

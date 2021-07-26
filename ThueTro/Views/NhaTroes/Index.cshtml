@@ -1,94 +1,119 @@
-﻿@model IEnumerable<ThueTro.Models.NhaTro>
-
+﻿@model PagedList.PagedList<ThueTro.Models.NhaTro>
+@using PagedList.Mvc;
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/HomePage.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Tenduong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DienTich)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TenChuNha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SDT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CTNha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GioiThieu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ratting)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IDQuann)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateTime)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tenduong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DienTich)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenChuNha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SDT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CTNha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GioiThieu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ratting)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDQuann)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDNha }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDNha }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDNha })
-        </td>
-    </tr>
-}
+<body>
+    <div class="panel panel-primary" style="width:100%">
+        <div class="panel-heading">
+            <span style="font-size: 30px; font-style:oblique"><span style="font-size:larger;"><span style="margin-right: 5px" class="glyphicon glyphicon-star"></span>Quản lý nhà trọ</span></span>
+        </div>
+    </div>
+    <p>
+        <button type="button" style="margin:3px; width:32.8%" class="btn btn-success col-lg-3 col-xs-3" onclick="location.href='@Url.Action("Create", "NhaTroes")';return false;"><span style="font-size:larger;"><span style="margin-right: 5px" class="glyphicon glyphicon-plus"></span>Đăng tin</span></button>
+    </p>
+    <br />
+    <br />
+    <h4>Tổng số nhà trọ hiện có: @ViewBag.total</h4>
+    <table class="table" border="1">
+        <tr>
+            <th style=" width:4%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">STT</th>
+            <th style=" width:10%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Tên đường</th>
+            <th style=" width:5%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Diện tích</th>
+            <th style=" width:5%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Tên chủ nhà</th>
+            <th style=" width:7%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">SDT liên hệ</th>
+            <th style=" width:14%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Chi tiết nhà</th>
+            <th style=" width:14%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Giới thiệu</th>
+            <th style=" width:5%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Giá</th>
+            <th style=" width:12%;max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Ảnh</th>
+            <th style=" width:12%;max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Ảnh 2</th>
+            <th style=" width:12%;max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Ảnh 3</th>
+            <th style=" width:4%;max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Ratting</th>
+            <th style=" width:4%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Quận</th>
+            <th style=" width:9%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Thời gian</th>
+            <th style=" width:7%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Chức năng</th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.IDNha)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.Tenduong)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.DienTich)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.TenChuNha)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Truncate(item.CTNha, 70)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Truncate(item.GioiThieu, 70)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.Gia)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    <img src="@Url.Content("~/Imagess/Duong/" + item.image)" style="max-height:95%; max-width:95%;" />
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    <img src="@Url.Content("~/Imagess/Duong/" + item.image)" style="max-height:95%; max-width:95%;" />
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    <img src="@Url.Content("~/Imagess/Duong/" + item.image)" style="max-height:95%; max-width:95%;" />
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.ratting)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.DiaDiemIdQuan)
+                </td>
+                <td style="text-align: center; vertical-align: middle">
+                    @Html.DisplayFor(modelItem => item.DateTime)
+                </td>
+                <td>
+                    <button style="width: 95px" type="button" class="btn btn-warning" onclick="location.href = '@Url.Action("Edit", "NhaTroes", new { id = item.IDNha })';return false;"><span style="margin-right: 5px" class="glyphicon glyphicon-pencil"></span>Sửa</button>
+                    <br />
+                    --------------------
+                    <button style="width: 95px" type="button" class="btn btn-info" onclick="location.href = '@Url.Action("Details", "NhaTroes", new { id = item.IDNha })';return false;"><span style="margin-right: 5px" class="glyphicon glyphicon-align-justify"></span>Chi tiết</button>
+                    <br />
+                    --------------------
+                    <button style="width: 95px" type="button" class="btn btn-danger" onclick="location.href = '@Url.Action("Delete", "NhaTroes", new { id = item.IDNha })' ;return false;"><span style="margin-right: 5px" class="glyphicon glyphicon-trash"></span>Xóa</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>
+</body>
+

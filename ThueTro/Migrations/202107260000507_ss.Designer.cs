@@ -6,14 +6,14 @@ namespace ThueTro.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Datatesst123 : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    public sealed partial class ss : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Datatesst123));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ss));
         
         string IMigrationMetadata.Id
         {
-            get { return "202107231857152_Datatesst123"; }
+            get { return "202107260000507_ss"; }
         }
         
         string IMigrationMetadata.Source
