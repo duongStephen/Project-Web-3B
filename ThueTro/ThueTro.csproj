@@ -51,6 +51,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -163,9 +166,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -174,36 +174,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DangTinController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\QuanLyController.cs" />
     <Compile Include="Controllers\NhaTroesController.cs" />
     <Compile Include="Controllers\timThueeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107222328300_KhoiNghiep.cs" />
-    <Compile Include="Migrations\202107222328300_KhoiNghiep.Designer.cs">
-      <DependentUpon>202107222328300_KhoiNghiep.cs</DependentUpon>
+    <Compile Include="Migrations\202107261253258_KhoiTao.cs" />
+    <Compile Include="Migrations\202107261253258_KhoiTao.Designer.cs">
+      <DependentUpon>202107261253258_KhoiTao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107231846489_DataMoi.cs" />
-    <Compile Include="Migrations\202107231846489_DataMoi.Designer.cs">
-      <DependentUpon>202107231846489_DataMoi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107231851115_Datatesst.cs" />
-    <Compile Include="Migrations\202107231851115_Datatesst.Designer.cs">
-      <DependentUpon>202107231851115_Datatesst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107231857152_Datatesst123.cs" />
-    <Compile Include="Migrations\202107231857152_Datatesst123.Designer.cs">
-      <DependentUpon>202107231857152_Datatesst123.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107231859456_Datatesst123321.cs" />
-    <Compile Include="Migrations\202107231859456_Datatesst123321.Designer.cs">
-      <DependentUpon>202107231859456_Datatesst123321.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107251622291_newDBNhaTros.cs" />
-    <Compile Include="Migrations\202107251622291_newDBNhaTros.Designer.cs">
-      <DependentUpon>202107251622291_newDBNhaTros.cs</DependentUpon>
+    <Compile Include="Migrations\202107261325567_sfaf.cs" />
+    <Compile Include="Migrations\202107261325567_sfaf.Designer.cs">
+      <DependentUpon>202107261325567_sfaf.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -464,6 +450,11 @@
     <Content Include="Views\NhaTroes\Edit.cshtml" />
     <Content Include="Views\NhaTroes\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\QuanLy\Delete.cshtml" />
+    <Content Include="Views\QuanLy\Details.cshtml" />
+    <Content Include="Views\QuanLy\Edit.cshtml" />
+    <Content Include="Views\QuanLy\Index.cshtml" />
+    <Content Include="Views\DangTin\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -483,23 +474,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107222328300_KhoiNghiep.resx">
-      <DependentUpon>202107222328300_KhoiNghiep.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107261253258_KhoiTao.resx">
+      <DependentUpon>202107261253258_KhoiTao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107231846489_DataMoi.resx">
-      <DependentUpon>202107231846489_DataMoi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107231851115_Datatesst.resx">
-      <DependentUpon>202107231851115_Datatesst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107231857152_Datatesst123.resx">
-      <DependentUpon>202107231857152_Datatesst123.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107231859456_Datatesst123321.resx">
-      <DependentUpon>202107231859456_Datatesst123321.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107251622291_newDBNhaTros.resx">
-      <DependentUpon>202107251622291_newDBNhaTros.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107261325567_sfaf.resx">
+      <DependentUpon>202107261325567_sfaf.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

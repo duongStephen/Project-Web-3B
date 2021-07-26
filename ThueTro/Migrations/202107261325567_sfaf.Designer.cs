@@ -6,14 +6,14 @@ namespace ThueTro.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class DataMoi : IMigrationMetadata
+    [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
+    public sealed partial class sfaf : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DataMoi));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(sfaf));
         
         string IMigrationMetadata.Id
         {
-            get { return "202107231846489_DataMoi"; }
+            get { return "202107261325567_sfaf"; }
         }
         
         string IMigrationMetadata.Source

@@ -3,7 +3,7 @@ namespace ThueTro.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class KhoiNghiep : DbMigration
+    public partial class KhoiTao : DbMigration
     {
         public override void Up()
         {
@@ -11,7 +11,7 @@ namespace ThueTro.Migrations
                 "dbo.DiaDiems",
                 c => new
                     {
-                        IDQuan = c.String(nullable: false, maxLength: 128),
+                        IDQuan = c.Byte(nullable: false),
                         TenQuan = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.IDQuan);
@@ -40,8 +40,12 @@ namespace ThueTro.Migrations
                         GioiThieu = c.String(maxLength: 500),
                         Gia = c.String(maxLength: 50),
                         image = c.String(),
-                        IDQuann = c.String(),
-                        diaDiem_IDQuan = c.String(maxLength: 128),
+                        image2 = c.String(),
+                        image3 = c.String(),
+                        ratting = c.Int(nullable: false),
+                        IDQuann = c.Byte(nullable: false),
+                        DateTime = c.DateTime(nullable: false),
+                        diaDiem_IDQuan = c.Byte(),
                     })
                 .PrimaryKey(t => t.IDNha)
                 .ForeignKey("dbo.DiaDiems", t => t.diaDiem_IDQuan)
