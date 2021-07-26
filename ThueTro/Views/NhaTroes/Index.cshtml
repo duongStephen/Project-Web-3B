@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ThueTro.Models.NhaTro>
+﻿@model PagedList.IPagedList<ThueTro.Models.NhaTro>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -15,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <!-- ========================= CSS here ========================= -->
 <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/assets/css/LineIcons.2.0.css" />
@@ -36,7 +37,7 @@
                                 <div class="col-lg-4 col-md-4 col-12 p-0">
                                     <div class="search-input">
                                         <label for="keyword"><i class="lni lni-search-alt theme-color"></i></label>
-                                        @Html.TextBox("searchh")
+                                        @Html.TextBox("searchh", ViewBag.CurrentFilter as string)
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-12 p-0">
@@ -62,7 +63,7 @@
                                         <label for="location"><i class="lni lni-map-marker theme-color"></i></label>
                                         <div class="form-group">
                                             @*@Html.LabelFor(m => m.DiaDiem)
-                        @Html.DropDownListFor(m => m.DiaDiem, new SelectList(Model.DiaDiems, "IDQuan", "TenQuan"), "", new { @class = "form-control" })*@
+                                                @Html.DropDownListFor(m => m.DiaDiem, new SelectList(Model.DiaDiems, "IDQuan", "TenQuan"), "", new { @class = "form-control" })*@
                                         </div>
                                     </div>
                                 </div>
@@ -73,8 +74,8 @@
                                         <button class="btn"><i class="lni lni-search-alt"></i> Search</button>
                                     </div>
                                 </div>}
-                            </div>
-</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,11 +109,21 @@
                             </div>
                             <div class="up-item"><i class="fa fa-star up-item-star"></i></div>
                         </li>
-                        }
+                    }
                 </ul>
 
             </div>
         </div>
+        <br />
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
+        @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+         new
+         {
+             page,
+             sortOrder = ViewBag.CurrentSort,
+             currentFilter = ViewBag.CurrentFilter
+         }))
 
     </div>
 </div>

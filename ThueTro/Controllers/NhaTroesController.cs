@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ThueTro.Models;
+using PagedList;
 
 namespace ThueTro.Controllers
 {
@@ -138,16 +139,33 @@ namespace ThueTro.Controllers
 
         //}return View(.ToList());
         
-        public ActionResult Index(string searchh)
+        public ViewResult Index(string sortOrder, string searchh, string currentFilter, int? page)
         {
-            var links = from l in db.NhaTros // lấy toàn bộ liên kết
-                        select l;
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "DateTime" ? "date_desc" : "DateTime";
+            if (searchh !=null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchh = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchh;
+            IQueryable<NhaTro> links = (from l in db.NhaTros // lấy toàn bộ liên kết
+                        select l).OrderBy(m => m.DateTime);
+           
 
             if (!String.IsNullOrEmpty(searchh)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
             {
-                links = links.Where(s => s.CTNha.Contains(searchh)); //lọc theo chuỗi tìm kiếm
+                links = links.Where(s => s.CTNha.ToUpper().Contains(searchh.ToUpper()) ||s.GioiThieu.ToUpper().Contains(searchh.ToUpper()));
+
+
             }
-            return View(links.ToList());
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(links.ToPagedList(pageNumber,pageSize));
 
         }
     }
