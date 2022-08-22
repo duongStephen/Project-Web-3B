@@ -1,0 +1,112 @@
+﻿@using ThueTro.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<ThueTro.Models.NhaTro>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="panel panel-primary" style="width:100%">
+    <div class="panel-heading">
+        <span style="font-size: 30px; font-style:oblique"><span style="font-size:larger;"><span style="margin-right: 5px" class="glyphicon glyphicon-star"></span>Quản lý nhà trọ</span></span>
+    </div>
+</div>
+<br />
+<h4>Tổng số nhà trọ hiện có: @ViewBag.total</h4>
+<table class="table" border="1">
+    <tr>
+        <th style=" width:4%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">STT</th>
+        <th style=" width:10%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Tên đường</th>
+        <th style=" width:5%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Diện tích</th>
+        <th style=" width:5%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Tên chủ nhà</th>
+        <th style=" width:7%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">SDT liên hệ</th>
+        <th style=" width:14%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Chi tiết nhà</th>
+        <th style=" width:14%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Giới thiệu</th>
+        <th style=" width:5%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Giá</th>
+        <th style=" width:12%;max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Ảnh</th>
+        <th style=" width:12%;max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Ảnh 2</th>
+        <th style=" width:12%;max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Ảnh 3</th>
+        <th style=" width:4%;max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Ratting</th>
+        <th style=" width:4%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Quận</th>
+        <th style=" width:9%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Thời gian</th>
+        <th style=" width:7%; max-width: 100%; font-weight:bolder; text-align: center; vertical-align: middle">Chức năng</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.IDNha)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.Tenduong)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.DienTich)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.TenChuNha)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Truncate(item.CTNha, 70)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Truncate(item.GioiThieu, 70)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                <img src="@Url.Content("~/Imagess/TuanDan/QPhuNhuan/" + item.image)" style="max-height:95%; max-width:95%;" />
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                <img src="@Url.Content("~/Imagess/TuanDan/QPhuNhuan/" + item.image2)" style="max-height:95%; max-width:95%;" />
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                <img src="@Url.Content("~/Imagess/TuanDan/QPhuNhuan/" + item.image3)" style="max-height:95%; max-width:95%;" />
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.ratting)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.IDQuann)
+            </td>
+            <td style="text-align: center; vertical-align: middle">
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                <button style="width: 95px" type="button" class="btn btn-warning" onclick="location.href = '@Url.Action("Edit", "QuanLy", new { id = item.IDNha })';return false;"><span style="margin-right: 5px" class="glyphicon glyphicon-pencil"></span>Sửa</button>
+                <br />
+                --------------------
+                <button style="width: 95px" type="button" class="btn btn-info" onclick="location.href = '@Url.Action("Details", "QuanLy", new { id = item.IDNha })';return false;"><span style="margin-right: 5px" class="glyphicon glyphicon-align-justify"></span>Chi tiết</button>
+                <br />
+                --------------------
+                <button style="width: 95px" type="button" class="btn btn-danger" onclick="location.href = '@Url.Action("Delete", "QuanLy", new { id = item.IDNha })' ;return false;"><span style="margin-right: 5px" class="glyphicon glyphicon-trash"></span>Xóa</button>
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

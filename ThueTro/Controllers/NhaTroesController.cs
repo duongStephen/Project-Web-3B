@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ThueTro.Models;
+using PagedList;
 
 namespace ThueTro.Controllers
 {
@@ -15,10 +16,10 @@ namespace ThueTro.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: NhaTroes
-        public ActionResult Index()
-        {
-            return View(db.NhaTros.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    return View(db.NhaTros.ToList());
+        //}
 
         // GET: NhaTroes/Details/5
         public ActionResult Details(int? id)
@@ -122,6 +123,50 @@ namespace ThueTro.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //public ViewResult Index(string searchString)
+        //{
+        //    var searchh = from s in db.NhaTros select s;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        searchh = searchh.Where(s =>
+        //       s.CTNha.ToUpper().Contains(searchString.ToUpper())
+        //        ||
+        //       s.GioiThieu.ToUpper().Contains(searchString.ToUpper()));
+        //    }
+
+        //}return View(.ToList());
+        
+        public ViewResult Index(string sortOrder, string searchh, string currentFilter, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "DateTime" ? "date_desc" : "DateTime";
+            if (searchh !=null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchh = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchh;
+            IQueryable<NhaTro> links = (from l in db.NhaTros // lấy toàn bộ liên kết
+                        select l).OrderBy(m => m.DateTime);
+           
+
+            if (!String.IsNullOrEmpty(searchh)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
+            {
+                links = links.Where(s => s.CTNha.ToUpper().Contains(searchh.ToUpper()) ||s.GioiThieu.ToUpper().Contains(searchh.ToUpper()));
+
+
+            }
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+            return View(links.ToPagedList(pageNumber,pageSize));
+
         }
     }
 }

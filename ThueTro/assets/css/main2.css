@@ -1437,6 +1437,7 @@ ol {
 
     .navbar-brand img {
         width: 190px;
+        
     }
 
 .mobile-menu-btn {
@@ -4344,7 +4345,7 @@ blockquote {
             color: #fff;
             text-align: center;
             border-radius: 50%;
-            border: 6px solid #b29cfb;
+            border: 6px solid #009688;
             display: inline-block;
             margin-bottom: 25px;
             font-weight: 700;

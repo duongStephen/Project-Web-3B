@@ -42,7 +42,7 @@
                 <div class="col-lg-12">
                     <div class="nav-inner">
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="index.html">
+                            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                                 <img src="~/assets/images/logo/12.png" alt="Logo">
                             </a>
                             <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
@@ -58,38 +58,29 @@
                                         <a class=" active dd-menu collapsed" href="javascript:void(0)"
                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-1"
                                            aria-controls="navbarSupportedContent" aria-expanded="false"
-                                           aria-label="Toggle navigation">Home</a>
+                                           aria-label="Toggle navigation">Trang chủ</a>
 
                                     </li>
                                     <li class="nav-item">
-                                        <a href="javascript:void(0)" aria-label="Toggle navigation">Categories</a>
+                                        <a href="@Url.Action("Index","NhaTroes")" aria-label="Toggle navigation">Tìm thuê</a>
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class=" dd-menu collapsed" href="javascript:void(0)"
+                                        <a class=" dd-menu collapsed" href="@Url.Action("Index", "QuanLy")"
                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-4"
                                            aria-controls="navbarSupportedContent" aria-expanded="false"
-                                           aria-label="Toggle navigation">Pages</a>
+                                           aria-label="Toggle navigation">Quản lý</a>
 
                                     </li>
-                                    <li class="nav-item">
-                                        <a class=" dd-menu collapsed" href="javascript:void(0)"
-                                           data-bs-toggle="collapse" data-bs-target="#submenu-1-5"
-                                           aria-controls="navbarSupportedContent" aria-expanded="false"
-                                           aria-label="Toggle navigation">Blog</a>
-
-                                    </li>
+                                   
                                 </ul>
                             </div> <!-- navbar collapse -->
                             <div class="login-button">
-                                <ul>
-                                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-
-                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                                </ul>
+                                
+                                @Html.Partial("_LoginPartial")
                             </div>
                             <div class="button header-button">
-                                <a href="javascript:void(0)" class="btn">Post an Ad</a>
+                                <a href="@Url.Action("Create","DangTin")" class="btn">Đăng tin</a>
                             </div>
                         </nav> <!-- navbar -->
                     </div>
@@ -107,19 +98,19 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer mobile-app">
-                            <h3>Mobile Apps</h3>
+                            <h3>Mobile Apps(Đang trong thử nghiệm)</h3>
                             <div class="app-button">
                                 <a href="javascript:void(0)" class="btn">
                                     <i class="lni lni-play-store"></i>
                                     <span class="text">
-                                        <span class="small-text">Get It On</span>
+                                        <span class="small-text">Tải về</span>
                                         Google Play
                                     </span>
                                 </a>
                                 <a href="javascript:void(0)" class="btn">
                                     <i class="lni lni-apple"></i>
                                     <span class="text">
-                                        <span class="small-text">Get It On</span>
+                                        <span class="small-text">Tải về</span>
                                         App Store
                                     </span>
                                 </a>
@@ -130,23 +121,23 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-link">
-                            <h3>Locations</h3>
+                            <h3>Địa điểm trung tâm</h3>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <ul>
-                                        <li><a href="javascript:void(0)">Chicago</a></li>
-                                        <li><a href="javascript:void(0)">New York City</a></li>
-                                        <li><a href="javascript:void(0)">San Francisco</a></li>
-                                        <li><a href="javascript:void(0)">Washington</a></li>
-                                        <li><a href="javascript:void(0)">Boston</a></li>
+                                        <li><a href="javascript:void(0)">Quận 1</a></li>
+                                        <li><a href="javascript:void(0)">Quận 2</a></li>
+                                        <li><a href="javascript:void(0)">Quận 3</a></li>
+                                        <li><a href="javascript:void(0)">Quận 4</a></li>
+                                        <li><a href="javascript:void(0)">Quận 5</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-12">
                                     <ul>
-                                        <li><a href="javascript:void(0)">Los Angeles</a></li>
-                                        <li><a href="javascript:void(0)">Seattle</a></li>
-                                        <li><a href="javascript:void(0)">Las Vegas</a></li>
-                                        <li><a href="javascript:void(0)">San Diego</a></li>
+                                        <li><a href="javascript:void(0)">Quận Tân Bình</a></li>
+                                        <li><a href="javascript:void(0)">QUận Tân phú</a></li>
+                                        <li><a href="javascript:void(0)">Quận Phú Nhuận</a></li>
+                                        <li><a href="javascript:void(0)">Quận Thủ Đức</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -156,13 +147,13 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-link">
-                            <h3>Quick Links</h3>
+                            <h3>Truy cập nhanh</h3>
                             <ul>
                                 <li><a href="javascript:void(0)">About Us</a></li>
-                                <li><a href="javascript:void(0)">How It's Works</a></li>
-                                <li><a href="javascript:void(0)">Login</a></li>
-                                <li><a href="javascript:void(0)">Signup</a></li>
-                                <li><a href="javascript:void(0)">Help & Support</a></li>
+                               
+                                <li><a href="@Url.Action("Login","Account")">Đăng nhập</a></li>
+                                <li><a href="@Url.Action("Register","Account")">Đăng ký</a></li>
+                                <li><a href="javascript:void(0)">Liên hệ/ Trợ giúp</a></li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -170,10 +161,10 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <!-- Single Widget -->
                         <div class="single-footer f-contact">
-                            <h3>Contact</h3>
+                            <h3>Liên hệ với chúng tôi</h3>
                             <ul>
-                                <li>23 New Design Str, Lorem Upsum 10<br> Hudson Yards, USA</li>
-                                <li>Tel. +(123) 1800-567-8990 <br> Mail. support@classigrids.com</li>
+                                <li>91 Nguyễn Hữu Cảnh<br> Phường 25 - Quận Bình Thạnh - TP.HCM</li>
+                                <li>Tel. +(84)1628116732 <br> Gmail: Deathcoi1711@gmail.com</li>
                             </ul>
                         </div>
                         <!-- End Single Widget -->
@@ -189,22 +180,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="content">
-                                <ul class="footer-bottom-links">
-                                    <li><a href="javascript:void(0)">Terms of use</a></li>
-                                    <li><a href="javascript:void(0)"> Privacy Policy</a></li>
-                                    <li><a href="javascript:void(0)">Advanced Search</a></li>
-                                    <li><a href="javascript:void(0)">Site Map</a></li>
-                                    <li><a href="javascript:void(0)">Information</a></li>
-                                </ul>
+                                
                                 <p class="copyright-text">
-                                    Designed and Developed by <a href="https://graygrids.com/"
-                                                                 rel="nofollow" target="_blank">GrayGrids</a>
+                                    Designed by Five Brothers Hood <a href="https://graygrids.com/"
+                                                                 rel="nofollow" target="_blank">Brothers</a>
                                 </p>
                                 <ul class="footer-social">
-                                    <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
+                                    <li><a href="https://www.facebook.com/groups/brother.hut"><i class="lni lni-facebook-filled"></i></a></li>
+                                    <li><a href="https://twitter.com/albumlife_16"><i class="lni lni-twitter-original"></i></a></li>
+                                    <li><a href="https://www.youtube.com/watch?v=GtEY_jCpHIc&ab_channel=B%E1%BA%A3oH%C6%B0ngMi%E1%BB%81nT%C3%A2y"><i class="lni lni-youtube"></i></a></li>
+                                    
                                 </ul>
                             </div>
                         </div>
